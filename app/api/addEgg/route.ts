@@ -10,7 +10,7 @@ type EggInfo = {
 };
 
 type SelectedDate = {
-  date: Date;
+  date: string;
 };
 
 type reqBody = { selectedEggs: EggInfo[]; selectedDate: SelectedDate }
