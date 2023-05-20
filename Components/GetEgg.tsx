@@ -43,7 +43,6 @@ function GetEggs() {
   });
 
 
-
   return (
     <div>
       <div className="p-10">

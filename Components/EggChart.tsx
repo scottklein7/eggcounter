@@ -3,7 +3,7 @@
 import { Card, LineChart, Title } from "@tremor/react";
 
 interface Props {
-  data: { totalCount: number; date: Date }[];
+  data: { totalEgg: number; date: string }[];
 }
 
 function EggChart({ data }: Props) {
