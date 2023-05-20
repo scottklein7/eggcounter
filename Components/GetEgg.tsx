@@ -6,7 +6,7 @@ import EggChart from "./EggChart";
 type EggCount = {
   id: string;
   userId: string;
-  date: Date;
+  date: string;
   totalCount: number;
   eggs: {
     id: string;
@@ -37,12 +37,12 @@ function GetEggs() {
 
   const eggChartTotal = data.map((egg) => {
     return {
-      date: new Date(egg.date).toLocaleDateString(),
+      date: egg.date,
       "totalEgg": egg.totalCount,
     };
   });
 
-  console.log(eggChartTotal);
+
 
   return (
     <div>

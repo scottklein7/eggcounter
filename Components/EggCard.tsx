@@ -31,7 +31,7 @@ const handleDeleteEggs = async (eggCountId: string) => {
       },
     });
     if (response.ok) {
-      console.log("hi");
+      window.location.reload();
     } else {
       throw new Error("Error bro");
     }
@@ -47,7 +47,7 @@ function EggCard({ eggCount }: Props) {
       decorationColor="teal"
       decoration="top"
     >
-      <Text>Date: {new Date(eggCount.date).toLocaleDateString()}</Text>
+      <Text>Date: {eggCount.date}</Text>
       <Metric className="font-thin text-green-600">
         Total Count: {eggCount.totalCount}
       </Metric>
@@ -61,7 +61,10 @@ function EggCard({ eggCount }: Props) {
               <span className="text-emerald-400">ed</span>
             </>
           ) : (
-            <span className={`eggColor-${egg.color}`}>
+            <span className={`eggColor-${egg.color
+              .toLowerCase()
+              .replace(/\s+/g, "-")}`}>
+
               {egg.color.charAt(0).toUpperCase() + egg.color.slice(1)}
             </span>
           )}
@@ -70,7 +73,7 @@ function EggCard({ eggCount }: Props) {
       ))}
       <div className="mt-3 flex justify-end items-end">
         <Button
-        className="w-24"
+          className="w-24"
           color="red"
           variant="primary"
           size="xs"

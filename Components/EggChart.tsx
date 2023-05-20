@@ -7,7 +7,14 @@ interface Props {
 }
 
 function EggChart({ data }: Props) {
-  console.log(data);
+
+  const sortedData = data.sort((a, b) => {
+    const dateA = new Date(a.date).getTime();
+    const dateB = new Date(b.date).getTime();
+    return dateA - dateB;
+  });
+
+
 
   const dataFormatter = (number: number) =>
     `${Intl.NumberFormat("us").format(number).toString()}`;
@@ -17,7 +24,7 @@ function EggChart({ data }: Props) {
       <Title>Total Egg Count</Title>
       <LineChart
         className="mt-6"
-        data={data}
+        data={sortedData}
         index="date"
         categories={["totalEgg"]}
         colors={["sky"]}

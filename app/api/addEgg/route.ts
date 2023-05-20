@@ -3,12 +3,20 @@ import { NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { prisma } from "@/prisma/prisma";
 
+
 type EggInfo = {
   color: string;
   count: string;
 };
 
-type RequestBody = EggInfo[];
+type SelectedDate = {
+  date: Date;
+};
+
+type reqBody = { selectedEggs: EggInfo[]; selectedDate: SelectedDate }
+
+
+type RequestBody = reqBody;
 
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
@@ -20,7 +28,7 @@ export async function POST(request: Request) {
 
   const body = (await request.json()) as RequestBody;
 
-  const eggs = body.map((egg) => {
+  const eggs = body.selectedEggs.map((egg) => {
     return { color: egg.color, count: parseInt(egg.count) };
   });
 
@@ -28,7 +36,7 @@ export async function POST(request: Request) {
     eggs.reduce((acc, egg) => acc + Number(egg.count), 0)
   );
 
-  console.log(eggs);
+  console.log(body.selectedDate, body.selectedEggs);
 
   if (request.body) {
     const eggCount = await prisma.eggCount.create({
@@ -42,11 +50,12 @@ export async function POST(request: Request) {
         eggs: {
           create: eggs,
         },
-        date: new Date(),
+        //@ts-ignore
+        date: body.selectedDate,
         totalCount: totalCount,
       },
     });
-    return new NextResponse(JSON.stringify(eggCount), { status: 201 });
+  return new NextResponse(JSON.stringify(body), { status: 201 });
   } else {
     return new NextResponse(
       JSON.stringify({ error: "No request body attached" }),

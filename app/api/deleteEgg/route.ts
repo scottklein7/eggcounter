@@ -11,7 +11,8 @@ export async function DELETE(request: Request) {
     });
   }
 
-  const id = request.url.substring(request.url.lastIndexOf("d") + 2);
+  const id = request.url.substring(request.url.lastIndexOf("=") + 1);
+
 
   if (!id) {
     return new NextResponse("Invalid ID", { status: 400 });

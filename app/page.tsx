@@ -9,7 +9,7 @@ export default async function Home() {
   const session = await getServerSession(authOptions);
 
   return (
-    <div className="bg-sky-300/100 min-h-screen p-10">
+    <div className="bg-sky-300/100 min-h-screen p-2">
       <NewEgg />
     </div>
   );
