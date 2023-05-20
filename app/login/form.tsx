@@ -10,7 +10,7 @@ import { useState } from "react";
 
 export const Form = () => {
   const router = useRouter();
-  const callbackUrl = "/";
+  const callbackUrl = "https://eggcounter.vercel.app/";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
