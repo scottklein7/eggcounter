@@ -13,7 +13,10 @@ export async function GET(request: Request) {
   }
 
   const user = await prisma.user.findUnique({
-    where: { id: session.user?.id },
+    where: {
+      //@ts-ignore
+      id: session.user?.id
+    },
   });
 
   const eggCounts = await prisma.eggCount.findMany({
