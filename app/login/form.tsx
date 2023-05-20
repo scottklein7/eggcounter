@@ -22,11 +22,11 @@ export const Form = () => {
         redirect: false,
         email,
         password,
-        callbackUrl,
+        callbackUrl: "/",
       });
       console.log("Res", res);
       if (!res?.error) {
-        router.push(callbackUrl);
+        router.push("/");
       } else {
         setError("Invalid email or password");
       }
