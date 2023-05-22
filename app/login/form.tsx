@@ -10,7 +10,7 @@ import { useState } from "react";
 
 export const Form = () => {
   const router = useRouter();
-  const callbackUrl = "https://eggcounter.vercel.app/";
+  const callbackUrl = "/";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -22,11 +22,10 @@ export const Form = () => {
         redirect: false,
         email,
         password,
-        callbackUrl: "/",
+        callbackUrl
       });
-      console.log("Res", res);
-      if (!res?.error) {
-        router.push("/");
+      if (res?.ok) {
+        router.push(callbackUrl);
       } else {
         setError("Invalid email or password");
       }
