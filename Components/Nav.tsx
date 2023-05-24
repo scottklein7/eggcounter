@@ -5,42 +5,27 @@ import Image from 'next/image';
 import Login from './Login';
 
 const Nav = () => {
-  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   return (
-    <nav className="bg-sky-200 p-4 font-serif text-emerald-500 flex flex-col items-center md:flex-row md:justify-between">
-      <div className="flex items-center gap-5">
+    <nav className="bg-sky-200 font-serif text-emerald-500 flex flex-col md:flex-row md:justify-between items-center justify-center">
+      <div className="flex flex-col md:flex-row items-center gap-3">
         <Link href="/">
-          <Image
-            width="50"
-            height="50"
+          <div>
+            <Image
             className='rounded-xl'
-            alt="chickenlogo"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbqXTHHoGknTXV4qrWQK5SQCdIh6gnxk9rXw&usqp=CAU"
-          />
+              width={50}
+              height={50}
+              alt="chickenlogo"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbqXTHHoGknTXV4qrWQK5SQCdIh6gnxk9rXw&usqp=CAU"
+            />
+          </div>
         </Link>
-        {!isMobile && (
-          <Link
-            className="hover:text-sky-400 text-xl"
-            href="/eggs"
-          >
-            See your egg data
-          </Link>
-        )}
+        <Link href="/eggs" className="hover:text-sky-400 text-xl">
+          See your egg data
+        </Link>
       </div>
+      
       <Login />
     </nav>
   );

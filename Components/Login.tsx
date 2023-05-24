@@ -7,7 +7,7 @@ function Login() {
 
   if (session) {
     return (
-      <div className="flex gap-5 items-center">
+      <div className="flex flex-col md:flex-row gap-5 items-center">
         <UserCard user={session?.user} />
         <button
           className="bg-green-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
